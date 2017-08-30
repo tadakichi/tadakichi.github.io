@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://example.com/about/</loc>
+    <lastmod>2017-08-29T07:52:04-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/returns/</loc>
+    <lastmod>2017-08-28T08:18:47-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/</loc>
+    <lastmod>2017-08-28T08:18:47-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/returns/quant-portfolio-return-update-jun-2017/</loc>
+    <lastmod>2017-08-27T05:46:35-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/returns/first/</loc>
+    <lastmod>2017-08-23T06:40:37-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

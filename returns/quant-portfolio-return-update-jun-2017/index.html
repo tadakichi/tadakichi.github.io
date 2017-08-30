@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quant Portfolio Return Update Jun 2017 - Tadakichi&#39;s Quant World</title>
+    <link rel="stylesheet" href="https://example.comcss/crab.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=3.0">
+    <meta name="generator" content="Hugo 0.26" />
+
+
+
+    
+
+  </head>
+  <body>
+
+    <div id="container">
+
+      <div id="header">
+
+        
+
+	<div id="site-title"><a href="https://example.com">Tadakichi&#39;s Quant World</a></div>
+	<div id="site-slogan">Posts about my quantitative activities</div>
+
+      </div>
+
+            <nav>
+	<ul class="first">
+          
+            <li><a href="/">Home</a>
+	    
+	    </li>
+	  
+            <li><a href="/strtech/">Strategies &amp; techniques</a>
+	    
+	    </li>
+	  
+            <li><a href="/returns/">returns</a>
+	    
+	    </li>
+	  
+            <li><a href="/about/">about</a>
+	    
+	    </li>
+	  
+	</ul>
+      </nav>
+
+
+      <div id="content">
+
+        <div id="article">
+	  <h1>Quant Portfolio Return Update Jun 2017</h1>
+
+
+<p class="timestamp">August 27, 2017</p>
+
+
+<p>Hi, all. In here I would like to update the return of my small size portfolio which I have started investing recently.</p>
+
+<p>This portfolio is 3-month rebalancing-basis, so every month I invest <sup>1</sup>&frasl;<sub>3</sub> of my total liquidity, and after 3 months rebalance each of them.</p>
+
+<p>The investing strategy is simple; 1) leave out too low market-cap stocks from the whole of Korean stock market and filter by PSR, ROE basis, 2) and invest 10 stocks of highest rank by simple momentum, volatility, and PSR variable basis.</p>
+
+<p>Below is simulation result of each Dec 2006 ~ Dec 2015, Jan 2007 ~ Dec 2015, Feb 2007 ~ Dec 2015.</p>
+
+<blockquote>
+<p>Yield:<br />
+Total return: 884.0169% of 108 months<br />
+Annualized Return: 28.924%<br />
+Average return of month: 2.4245%<br />
+Hit ratio: 63.8889%<br />
+Max of months: 41.0235%<br />
+Min of months: -28.2114%<br />
+Stdev: 7.7277%<br />
+Sharpe: 0.3137</p>
+
+<p>Yield:<br />
+Total return: 986.4961% of 107 months<br />
+Annualized Return: 30.6743%<br />
+Average return of month: 2.5421%<br />
+Hit ratio: 59.8131%<br />
+Max of months: 34.583%<br />
+Min of months: -26.5066%<br />
+Stdev: 7.786%<br />
+Sharpe: 0.3265</p>
+
+<p>Yield:<br />
+Total return: 772.9234% of 106 months<br />
+Annualized Return: 27.7985%<br />
+Average return of month: 2.3364%<br />
+Hit ratio: 57.5472%<br />
+Max of months: 26.0764%<br />
+Min of months: -23.9467%<br />
+Stdev: 7.5228%<br />
+Sharpe: 0.3106<br />
+Elapsed time: 181</p>
+</blockquote>
+
+<p>Expecting 31% annual return, but very low Sharpe ratio. Maybe that&rsquo;s because there are only 10 stocks in the portfolio and the model has flawed. It should be handled by applying like dual momentum skim on the portfolio itself induced by the model or changing cash proportion every month.</p>
+
+<p>And differences of returns are quite high. Maybe because of not applying timing of the financial states, but also the high influence of single stock and the problem with the model.</p>
+
+<p>Looking at invested stocks, there are many many repeatedly shown stocks. It seems that it is because few low value and volatility stocks appear many times. It should be reduced by applying another variable or so.</p>
+
+<p>Hit ratio or max, min returns are a 1-month basis, so by 3-month as rebalancing basis, it should be higher.</p>
+
+<p>It seems like simulation period is too short. For now, when extracting stocks use daily price and market-cap, so long simulation period causes delayed simulation time, lots of memory consumption. And personally, I think that using data that was too long ago is rather meaningless, especially Korean market. Anyway, those problem causes so called &lsquo;data snooping&rsquo; or &lsquo;data mining&rsquo; issues, but I think try-and-error method fits for me.</p>
+
+<p>The data over the end of 2015 is for validation. It seems too short but will get bigger as time goes by. I just use it to check the model works well for an out-of-sample period.</p>
+
+<p>For now, it takes approximately 180 seconds to simulate. It works as single thread scheme, so parallelizing will make time much shorter.</p>
+
+<p>Below is the result of Dec 2007 ~ Dec 2015, right after the financial crisis.</p>
+
+<blockquote>
+<p>Yield:<br />
+Total return: 478.1487% of 96 months<br />
+Annualized Return: 24.5245%<br />
+Average return of month: 2.0733%<br />
+Hit ratio: 60.4167%<br />
+Max of months: 20.2749%<br />
+Min of months: -23.9467%<br />
+Stdev: 6.8208%<br />
+Sharpe: 0.304<br />
+Elapsed time: 152</p>
+</blockquote>
+
+<p>And, the result of Dec 2008 ~ Dec 2015.</p>
+
+<blockquote>
+<p>Yield:<br />
+Total return: 874.2176% of 84 months<br />
+Annualized Return: 38.432%<br />
+Average return of month: 2.9217%<br />
+Hit ratio: 67.8571%<br />
+Max of months: 20.2749%<br />
+Min of months: -9.2974%<br />
+Stdev: 6.0916%<br />
+Sharpe: 0.4796</p>
+</blockquote>
+
+<p>Except for the financial crisis period, those returns are just looking fine. I do not think the same thing as the financial crisis for a time being, so I am just investing.</p>
+
+<p>Below are actual returns of stocks invested during 3-months.
+
+<figure >
+    
+        <img src="/media/trading_result_20170801.png" />
+    
+    
+    <figcaption>
+        <h4>Trading Results</h4>
+        
+    </figcaption>
+    
+</figure>
+</p>
+
+<p>The stock with low return(-42.63%) is because of stock increase without consideration, so considering this, positive return. Another low return(-18.38%) is Harim(<strong>code: 136380</strong>), which has been suffered from expedient giving issue. It seems that there is a situation that invests in a stock which cannot be invested in the circumstance because it invests the stocks with number-based model only. Those stocks should be filtered by checking individual stock&rsquo;s recent circumstances with morpheme analysis of news data parsed by the separated program. This reminds the importance of qualitative analysis for the real investment.</p>
+
+<p>Including Harim, total portfolio return is just 3%.</p>
+
+<p>The quantitative flatform I use is made in Java, and I keep refactoring it, but in some days I&rsquo;ll switch to Scala. I think Scala&rsquo;s functional language&rsquo;s feature and productivity is irresistible. I&rsquo;m not good at Java neither, but If I code hard both will be helping each other. It</p>
+
+<p>The platform has now been built to some degree. If I need to add some variables or strategies, I just need to write some codes implementing interface&rsquo;s method and switch it according to the needs. Of course, those can be done by every programming languages. I hope many people in Korea do the analysis with programming, not Excel. It&rsquo;s just Old stone age. Simulating what I did in Excel? No Way. one of the weaknesses using Java is the impossibility of visualization, but I think it will be done by Spark.</p>
+
+<p>The current strategy is 3-month rebalancing with 10 stocks, maybe it will be changed to 2-month rebalancing with 20 stocks. I&rsquo;ll keep posting returns or strategies.</p>
+
+
+<div id="disqus_thread"></div>
+<script>
+
+
+var disqus_config = function () {
+this.page.url = "https://example.com/returns/quant-portfolio-return-update-jun-2017/";  
+this.page.identifier ="https://example.com/returns/quant-portfolio-return-update-jun-2017/"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://quant-world.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        </div>
+
+      </div>
+
+      <div id="footer">
+        Copyright 2017 
+      </div>
+
+    </div>
+
+  </body>
+</html>
+
+
+
+*/
