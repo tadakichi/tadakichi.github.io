@@ -11,5 +11,25 @@
 	<atom:link href="https://tadakichi.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Quant Portfolio Return Update Jun 2017</title>
+      <link>https://tadakichi.github.io/returns/quant-portfolio-return-update-jun-2017/</link>
+      <pubDate>Sun, 27 Aug 2017 05:46:35 -0700</pubDate>
+      
+      <guid>https://tadakichi.github.io/returns/quant-portfolio-return-update-jun-2017/</guid>
+      <description>Hi, all. In here I would like to update the return of my small size portfolio which I have started investing recently.
+This portfolio is 3-month rebalancing-basis, so every month I invest 1&amp;frasl;3 of my total liquidity, and after 3 months rebalance each of them.
+The investing strategy is simple; 1) leave out too low market-cap stocks from the whole of Korean stock market and filter by PSR, ROE basis, 2) and invest 10 stocks of highest rank by simple momentum, volatility, and PSR variable basis.</description>
+    </item>
+    
+    <item>
+      <title>First</title>
+      <link>https://tadakichi.github.io/returns/first/</link>
+      <pubDate>Wed, 23 Aug 2017 06:40:37 -0700</pubDate>
+      
+      <guid>https://tadakichi.github.io/returns/first/</guid>
+      <description>asdijaosidjoaisjd askdaisjdoaisjdoaijsdoaijs aiosjdoaisjdoiajsoij</description>
+    </item>
+    
   </channel>
 </rss>
