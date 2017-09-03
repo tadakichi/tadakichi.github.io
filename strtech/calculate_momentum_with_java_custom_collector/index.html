@@ -55,11 +55,11 @@
 
 
 
-<h3 id="purpose">Purpose</h3>
+<h2 id="purpose">Purpose</h2>
 
 <p>This time, we will see how we can read data from a file and calculate stock&rsquo;s simple moving average based momentum with Java&rsquo;s Stream and a custom collector.</p>
 
-<h3 id="data">Data</h3>
+<h2 id="data">Data</h2>
 
 <p>As follows, stock price data is stored in a single file.</p>
 
@@ -150,7 +150,7 @@ public class DailyPriceSupplier extends AbsMarketDataSupplier&lt;Integer, PriceV
 
 <p>Now we have a list containing whole stocks &lsquo; price within certain date boundary.</p>
 
-<h3 id="how-to-do-it">How to do it</h3>
+<h2 id="how-to-do-it">How to do it</h2>
 
 <p>With this data, how do we calculate the one-year moving average of all stocks prior to Dec 30, 2015?</p>
 
@@ -280,7 +280,7 @@ public class SmaCollector extends TemplateCollector&lt;PriceVo&gt; {
 
 <p>As above, the finisher method returns an object. Rather than returning an object, we may return Optional<MomentumVo>.</p>
 
-<h3 id="summary">Summary</h3>
+<h2 id="conclusion">Conclusion</h2>
 
 <p>As we have seen before, Java Stream helps to handle data more easily with functional programming way.</p>
 
