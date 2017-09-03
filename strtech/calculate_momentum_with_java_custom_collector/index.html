@@ -5,11 +5,8 @@
     <link rel="stylesheet" href="https://tadakichi.github.io/css/crab.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=3.0">
     <meta name="generator" content="Hugo 0.26" />
-
-
-
     
-
+<link href="/css/prism.css" rel="stylesheet" />
   </head>
   <body>
 
@@ -105,7 +102,7 @@ public class MarketDto&lt;N extends Number&gt; {
 
 <p>When reading data as a list, we use the class&rsquo;s method as follows.</p>
 
-<pre><code>public abstract class AbsMarketDataSupplier &lt;N extends Number, R extends MarketDto&lt;N&gt;&gt; {
+<pre><code class="language-java">public abstract class AbsMarketDataSupplier &lt;N extends Number, R extends MarketDto&lt;N&gt;&gt; {
 
     public final List&lt;R&gt; list;
     
@@ -292,7 +289,7 @@ public class SmaCollector extends TemplateCollector&lt;PriceVo&gt; {
 
 <p>With stream API, we can apply this methodology to not only price data, but also financial data. And we can do the more complex calculation by, for example, mapping price data to index data.</p>
 
-<p>As we stored data in a single file, we perform the calculation without DB, which is fast because of no IO but occurs longer data reading time. Actually, it takes dozens of seconds to read whole price data file. In fact, we are dealing with just Korea&rsquo;s stock market, which is much smaller than other advanced countries, and that&rsquo;s why we can put all price data into one single file. That can be improved by splitting the data and reading in parallel.</p>
+<p>As we stored data in a single file, we perform the calculation without DB, which is fast because of no IO but occurs longer data reading time. Actually, it takes dozens of seconds to read whole price data file. In fact, we are dealing with just Korea&rsquo;s stock market, which is much smaller than other advanced countries, and that&rsquo;s why we can put all price data into one single file. That can be improved by splitting the data and loading in parallel.</p>
 
 
 <div id="disqus_thread"></div>
@@ -313,6 +310,7 @@ s.setAttribute('data-timestamp', +new Date());
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
+<script src="/js/prism.js"></script>
         </div>
 
       </div>
