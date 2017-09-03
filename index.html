@@ -57,6 +57,23 @@
     <article>
       
       <div>
+        <h2><a href="/strtech/calculate_momentum_with_java_custom_collector/">Calculating stocks&#39; moving average based momentum with Java Custom Collector - 2017-09-03</a></h2>
+        Purpose This time, we will see how we can read data from a file and calculate stock&rsquo;s simple moving average based momentum with Java&rsquo;s Stream and a custom collector.
+Data As follows, stock price data is stored in a single file.
+m,2007-01-02,A005930,1309000 m,2007-01-02,A000660,35550 m,2007-01-02,A005380,224500 ... m,2007-01-03,A005930,1409000 m,2007-01-03,A000660,33050 ... m,2008-01-03,A005930,1209000 m,2008-01-03,A000660,37050 ...  Price data&rsquo;s DTO will be like this;
+@Getter @Setter @ToString @AllArgsConstructor public class MarketDto&lt;N extends Number&gt; { private String type; private LocalDate date; private String symbol; private N value; @EqualsAndHashCode(callSuper = true) @ToString(callSuper = true) public static class PriceVo extends MarketDto&lt;Integer&gt; { public PriceVo(String type, LocalDate date, String symbol, int value) { super(type, date, symbol, value); } } .
+      </div>
+      
+      
+      <div>
+        <a href="/strtech/calculate_momentum_with_java_custom_collector/">Read More…</a>
+      </div>
+      
+    </article>
+
+    <article>
+      
+      <div>
         <h2><a href="/returns/quant-portfolio-return-update-jun-2017/">Quant Portfolio Return Update Jun 2017 - 2017-08-27</a></h2>
         Hi, all. In here I would like to update the return of my small size portfolio which I have started investing recently.
 This portfolio is 3-month rebalancing-basis, so every month I invest 1&frasl;3 of my total liquidity, and after 3 months rebalance each of them.

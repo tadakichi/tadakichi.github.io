@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculating stocks&#39; moving average based momentum with Java Custom Collector - Tadakichi&#39;s Quant World</title>
+    <link rel="stylesheet" href="https://tadakichi.github.io/css/crab.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=3.0">
+    <meta name="generator" content="Hugo 0.26" />
+
+
+
+    
+
+  </head>
+  <body>
+
+    <div id="container">
+
+      <div id="header">
+
+        
+
+	<div id="site-title"><a href="https://tadakichi.github.io/">Tadakichi&#39;s Quant World</a></div>
+	<div id="site-slogan">Posts about my quant investment activities</div>
+
+      </div>
+
+            <nav>
+	<ul class="first">
+          
+            <li><a href="/">Home</a>
+	    
+	    </li>
+	  
+            <li><a href="/strtech/">Strategies &amp; techniques</a>
+	    
+	    </li>
+	  
+            <li><a href="/returns/">returns</a>
+	    
+	    </li>
+	  
+            <li><a href="/about/">about</a>
+	    
+	    </li>
+	  
+	</ul>
+      </nav>
+
+
+      <div id="content">
+
+        <div id="article">
+	  <h1>Calculating stocks&#39; moving average based momentum with Java Custom Collector</h1>
+
+
+<p class="timestamp">September 3, 2017</p>
+
+
+
+
+<h3 id="purpose">Purpose</h3>
+
+<p>This time, we will see how we can read data from a file and calculate stock&rsquo;s simple moving average based momentum with Java&rsquo;s Stream and a custom collector.</p>
+
+<h3 id="data">Data</h3>
+
+<p>As follows, stock price data is stored in a single file.</p>
+
+<pre><code>m,2007-01-02,A005930,1309000
+m,2007-01-02,A000660,35550
+m,2007-01-02,A005380,224500
+...
+m,2007-01-03,A005930,1409000
+m,2007-01-03,A000660,33050
+...
+m,2008-01-03,A005930,1209000
+m,2008-01-03,A000660,37050
+...
+</code></pre>
+
+<p>Price data&rsquo;s DTO will be like this;</p>
+
+<pre><code class="language-java">@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+public class MarketDto&lt;N extends Number&gt; {
+    
+    private String type;
+    private LocalDate date;
+    private String symbol;
+    private N value;
+    
+    @EqualsAndHashCode(callSuper = true)
+    @ToString(callSuper = true)
+    public static class PriceVo extends MarketDto&lt;Integer&gt; {
+
+        public PriceVo(String type, LocalDate date, String symbol, int value) {
+            super(type, date, symbol, value);
+
+        }
+    }
+    ...
+</code></pre>
+
+<p>When reading data as a list, we use the class&rsquo;s method as follows.</p>
+
+<pre><code>public abstract class AbsMarketDataSupplier &lt;N extends Number, R extends MarketDto&lt;N&gt;&gt; {
+
+    public final List&lt;R&gt; list;
+    
+    public AbsMarketDataSupplier(String fileType, Function&lt;String, R&gt; func) throws IOException {
+        
+        InputStream in = this.getClass().getClassLoader().getResourceAsStream(&quot;filepath.properties&quot;);
+        Properties prop = new Properties();
+        
+        prop.load(in);
+        
+        list = Files.lines(Paths.get(prop.getProperty(fileType))).map(func).collect(Collectors.toList());
+    }
+    
+    public List&lt;R&gt; getData(LocalDate date) {
+    ...
+
+public class DailyPriceSupplier extends AbsMarketDataSupplier&lt;Integer, PriceVo&gt; {
+    
+    private static DailyPriceSupplier INSTANCE = null;
+    
+    static Function&lt;String, PriceVo&gt; converter = (str) -&gt; {
+
+        String[] arr = str.split(&quot;,&quot;);
+        PriceVo vo =  new PriceVo(arr[0], LocalDate.parse(arr[1], DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;)), arr[2],
+                Integer.parseInt(arr[3]));
+        return vo;
+    };
+    
+    public DailyPriceSupplier() throws IOException{
+        super(&quot;PRICE_DAILY&quot;, converter);
+    }
+    
+    public static DailyPriceSupplier getInstance() throws IOException {
+
+        if (INSTANCE == null) {
+            INSTANCE = new DailyPriceSupplier();
+        }
+
+        return INSTANCE;
+    }
+    ...
+</code></pre>
+
+<p>The abstract class AbsMarketDataSupplier has a code making a list by reading data in the constructor, and implement class DailyPriceSupplier extends AbsMarketDataSupplier and provides a function mapping data to object. Like this, we can make similar classes easily with inheritance.</p>
+
+<p>Now we have a list containing whole stocks &lsquo; price within certain date boundary.</p>
+
+<h3 id="how-to-do-it">How to do it</h3>
+
+<p>With this data, how do we calculate the one-year moving average of all stocks prior to Dec 30, 2015?</p>
+
+<p>With java, If without stream and don&rsquo;t now the list is sorted, a brutal way coming into the mind is gathering all prices between Jan 2015 and Dec 2015 by keep iterating the list, extracting stocks&rsquo; symbol from the resultant list, mapping the data to each stock&rsquo;s price list. If we really need to do this like that, we shouldn&rsquo;t choose Java.</p>
+
+<p>Java&rsquo;s Stream, adopted from version 1.8, makes this kind of job much more easily.</p>
+
+<pre><code class="language-java">public abstract class AbsMarketDataSupplier &lt;N extends Number, R extends MarketDto&lt;N&gt;&gt; {
+    ...
+    public Stream&lt;R&gt; getStreamByPredicate(Predicate&lt;R&gt; predicate) {
+        return list.stream().filter(predicate);
+    }
+    ...
+</code></pre>
+
+<p>The client calls the method getStreamByPredicate as above which gets a predicate and filter the list with it.</p>
+
+<pre><code class="language-java">    Predicate&lt;PriceVo&gt; pricePradicate = p -&gt; {
+        return p.getDate().isAfter(param.getFromdate(toDate).minusDays(1)) 
+                &amp;&amp; p.getDate().isBefore(toDate.minusMonths(param.getSkippingMonthNum()).plusDays(1));
+    };
+    
+    List&lt;MomentumVo&gt; results = 
+            // get all prices of every stock within 1 year
+            supplier.getStreamByPredicate(pricePradicate) 
+            // pass the price data groped by stocks to custom collector
+            // and get values of the calculated map
+            .collect(Collectors.groupingBy(PriceVo::getSymbol, collector)).values()
+            // eliminate null value and return the list
+            .stream().filter(e -&gt; e != null).collect(Collectors.toList());
+</code></pre>
+
+<p>As above, we can get the list of all stocks&rsquo; 1-year momentum with quite short codes.
+As we have seen here, the method gets a custom collector as an argument. Let&rsquo;s see this.</p>
+
+<pre><code class="language-java">package com.haengtoo.indicator.momentum;
+
+import java.util.ArrayList;
+...
+
+public abstract class TemplateCollector&lt;M extends MarketDto&lt;? extends Number&gt;&gt;
+        implements Collector&lt;M, List&lt;M&gt;, MomentumVo&gt; {
+
+    protected long period;
+
+    public TemplateCollector(long period) {
+        this.period = period;
+    }
+
+    @Override
+    public BiConsumer&lt;List&lt;M&gt;, M&gt; accumulator() {
+
+        return (l, p) -&gt; {
+
+            l.add(p);
+
+        };
+    }
+
+    @Override
+    public Set&lt;java.util.stream.Collector.Characteristics&gt; characteristics() {
+
+        return Collections.unmodifiableSet(EnumSet.of(Characteristics.CONCURRENT));
+    }
+
+    @Override
+    public BinaryOperator&lt;List&lt;M&gt;&gt; combiner() {
+
+        return (l1, l2) -&gt; {
+            l1.addAll(l2);
+
+            return l1;
+        };
+    }
+
+    @Override
+    public Supplier&lt;List&lt;M&gt;&gt; supplier() {
+
+        return () -&gt; new ArrayList&lt;&gt;();
+    }
+}
+</code></pre>
+
+<p>The above class is TemplateCollector, which is a backbone of the custom collector and implements Collector Interface. The Simple Moving Average Collector, which calculating prices&rsquo; average and the difference with recent price, implements this by inheriting the TemplateCollector.</p>
+
+<pre><code class="language-java">package com.haengtoo.indicator.momentum.impl;
+
+import java.util.List;
+...
+
+public class SmaCollector extends TemplateCollector&lt;PriceVo&gt; {
+
+    public SmaCollector(long period) {
+        super(period);
+
+    }
+
+    @Override
+    public Function&lt;List&lt;PriceVo&gt;, MomentumVo&gt; finisher() {
+
+        return (l) -&gt; {
+            // return null if not enough data
+            if(l.size()&lt;period) return null;
+            // sort list
+            l.sort((p1, p2) -&gt; p1.getDate().compareTo(p2.getDate()));
+            
+            int sum = 0;
+            for (PriceVo m : l) {
+
+                sum += m.getValue();
+            }
+            // calculate simple moving average
+            double avg = sum / period;
+            
+            // calculate momentum, and return as object
+            return new MomentumVo(l.get(0).getSymbol(), l.get((int) (period - 1)).getValue() / avg -1) ;
+
+        };
+    }
+    
+}
+</code></pre>
+
+<p>In the code, SmaCollector implements Collector Interface&rsquo;s finisher method, and actually, this finisher method calculates momentum.</p>
+
+<p>If we need an another class handling price data, we can simply make a class inheriting TemplateCollector and write finisher method.</p>
+
+<p>As above, the finisher method returns an object. Rather than returning an object, we may return Optional<MomentumVo>.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>As we have seen before, Java Stream helps to handle data more easily with functional programming way.</p>
+
+<p>In Javadoc, Stream is explained like this;
+-Classes to support functional-style operations on streams of elements, such as map-reduce transformations on collections.</p>
+
+<p>With stream API, we can apply this methodology to not only price data, but also financial data. And we can do the more complex calculation by, for example, mapping price data to index data.</p>
+
+<p>As we stored data in a single file, we perform the calculation without DB, which is fast because of no IO but occurs longer data reading time. Actually, it takes dozens of seconds to read whole price data file. In fact, we are dealing with just Korea&rsquo;s stock market, which is much smaller than other advanced countries, and that&rsquo;s why we can put all price data into one single file. That can be improved by splitting the data and reading in parallel.</p>
+
+
+<div id="disqus_thread"></div>
+<script>
+
+
+var disqus_config = function () {
+this.page.url = "https://tadakichi.github.io/strtech/calculate_momentum_with_java_custom_collector/";  
+this.page.identifier ="https://tadakichi.github.io/strtech/calculate_momentum_with_java_custom_collector/"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://quant-world.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+        </div>
+
+      </div>
+
+      <div id="footer">
+        Copyright 2017 
+      </div>
+
+    </div>
+
+  </body>
+</html>
+
+
+
+*/
