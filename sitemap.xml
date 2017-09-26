@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://tadakichi.github.io/returns/quant-portfolio-return-update-aug-2017/</loc>
+    <lastmod>2017-09-26T07:33:39-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tadakichi.github.io/model/</loc>
+    <lastmod>2017-09-26T07:25:47-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tadakichi.github.io/model/explanation-current-model-investment/</loc>
+    <lastmod>2017-09-26T05:27:23-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://tadakichi.github.io/strtech/calculate_momentum_with_java_custom_collector/</loc>
     <lastmod>2017-09-03T08:19:29-07:00</lastmod>
   </url>

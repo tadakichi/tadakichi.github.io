@@ -13,6 +13,35 @@
     
     
     <item>
+      <title>Quant Portfolio Return Update Aug 2017</title>
+      <link>https://tadakichi.github.io/returns/quant-portfolio-return-update-aug-2017/</link>
+      <pubDate>Tue, 26 Sep 2017 07:33:39 -0700</pubDate>
+      
+      <guid>https://tadakichi.github.io/returns/quant-portfolio-return-update-aug-2017/</guid>
+      <description>It&amp;rsquo;s been a quite busy day, I&amp;rsquo;m updating August&amp;rsquo;s results now.
+The model I used is here; I invested 10 stocks rather than 20 stocks. model
+The portfolio result invested from the end of May to the end of August is here; Sorry for that stock name is written in Korean. The first column of the table is code.
+ 000880 한화 -1.75%
+001790 대한제당 -0.88%
+013580 계룡건설 -3.60%
+013870 지엠비코리아 15.</description>
+    </item>
+    
+    <item>
+      <title>Explanation of the current Model for investment</title>
+      <link>https://tadakichi.github.io/model/explanation-current-model-investment/</link>
+      <pubDate>Tue, 26 Sep 2017 05:27:23 -0700</pubDate>
+      
+      <guid>https://tadakichi.github.io/model/explanation-current-model-investment/</guid>
+      <description>This time, I&amp;rsquo;m gonna explain the model I&amp;rsquo;m using for real investment. This model is the base model, so it will be the base when comparing with updates or changes.
+Here is the simple diagram of the quant process.
+ model   Every process except evaluation is calculated in rebalancing period, and evaluation is calculated in monthly.
+And here are simulation results.
+ fromDate=2006-12-31, toDate=2015-12-31
+Total return: 1407.9304% of 108 months</description>
+    </item>
+    
+    <item>
       <title>Quant with Java - Calculating stocks&#39; moving average based momentum with Java Custom Collector</title>
       <link>https://tadakichi.github.io/strtech/calculate_momentum_with_java_custom_collector/</link>
       <pubDate>Sun, 03 Sep 2017 08:19:29 -0700</pubDate>
