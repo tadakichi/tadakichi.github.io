@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts of strategies and techniques on Tadakichi&#39;s Quant World</title>
+    <title>Posts of strategies and techniques on Jason&#39;s Quant World</title>
     <link>https://tadakichi.github.io/strtech/</link>
-    <description>Recent content in Posts of strategies and techniques on Tadakichi&#39;s Quant World</description>
+    <description>Recent content in Posts of strategies and techniques on Jason&#39;s Quant World</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Jason Lee</copyright>
@@ -11,6 +11,19 @@
     
 	<atom:link href="https://tadakichi.github.io/strtech/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Parallelizing quant portfolio calculation with Java ForkJoin Framework</title>
+      <link>https://tadakichi.github.io/strtech/parallelizing-quant-porfoilo-calculation-java-forkjoin/</link>
+      <pubDate>Thu, 28 Sep 2017 05:27:22 -0700</pubDate>
+      
+      <guid>https://tadakichi.github.io/strtech/parallelizing-quant-porfoilo-calculation-java-forkjoin/</guid>
+      <description>parallelizing quant portfolio calculation with Java ForkJoin Framework
+This time, I&amp;rsquo;ll demonstrate how my quant program parallelizes portfolio calculation with Java ForkJoin framework.
+ forkjoin   ForkJoin framework was introduced from Java 7, and parallelStream, parallel version of stream which is included in Java 8 uses this for parallel tasks.
+The model and process I&amp;rsquo;m currently using is here; model
+When extracting portfolios, This process calculates all stocks including delisted stocks.</description>
+    </item>
     
     <item>
       <title>Quant with Java - Calculating stocks&#39; moving average based momentum with Java Custom Collector</title>
