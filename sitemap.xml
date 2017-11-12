@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://tadakichi.github.io/returns/quant-portfolio-return-update-oct-2017/</loc>
+    <lastmod>2017-11-12T05:46:34-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tadakichi.github.io/returns/quant-portfolio-return-update-sep-2017/</loc>
+    <lastmod>2017-11-12T05:30:17-08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://tadakichi.github.io/strtech/parallelizing-quant-porfoilo-calculation-java-forkjoin/</loc>
     <lastmod>2017-09-28T05:27:22-07:00</lastmod>
   </url>
