@@ -13,6 +13,16 @@
     
     
     <item>
+      <title>More Rigid Backtesting</title>
+      <link>https://tadakichi.github.io/model/more-rigid-backtesting/</link>
+      <pubDate>Wed, 27 Dec 2017 21:13:55 -0800</pubDate>
+      
+      <guid>https://tadakichi.github.io/model/more-rigid-backtesting/</guid>
+      <description>The model we used so far is backtested under quite a rough assumption.
+Problems according to there assumptions are following:  Extract the portfolio at the end date of the month, and simulate investment at the same date. When calculating portfolio return, simply average each stocks&amp;rsquo; returns. This may exclude the possibility that we cannot fully invest available cash(if we can invest 2,000,000 dollars in each stock, and the stock price of the day is 1,000,000 dollar, It means We can invest only one stock.</description>
+    </item>
+    
+    <item>
       <title>Quant Portfolio Return Update Oct 2017</title>
       <link>https://tadakichi.github.io/returns/quant-portfolio-return-update-oct-2017/</link>
       <pubDate>Sun, 12 Nov 2017 05:46:34 -0800</pubDate>
