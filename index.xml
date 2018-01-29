@@ -13,6 +13,65 @@
     
     
     <item>
+      <title>Quant Portfolio Return Update Dec 2017</title>
+      <link>https://tadakichi.github.io/returns/quant-portfolio-return-update-dec-2017/</link>
+      <pubDate>Mon, 29 Jan 2018 03:51:00 -0800</pubDate>
+      
+      <guid>https://tadakichi.github.io/returns/quant-portfolio-return-update-dec-2017/</guid>
+      <description>nd backtesting strategy are here;
+model
+backtesting
+The portfolio return from Oct to Dec is here;
+ 000060 메리츠화재 -11.56%
+000320 노루홀딩스 -10.14%
+000370 한화손해보험 -0.04%
+000880 한화 -1.56%
+001940 KISCO홀딩스 -8.82%
+002030 아세아 1.32%
+003690 코리안리 -2.26%
+005710 대원산업 0.66%
+006120 SK케미칼 14.25%
+007690 국도화학 5.92%
+009410 태영건설 25.87%
+011760 현대상사 -8.74%
+013580 계룡건설 0.85%
+015360 예스코 -0.66%
+016590 신대양제지 1.06%
+034730 SK -5.07%
+041650 상신브레이크 -1.86%
+058650 세아홀딩스 -2.</description>
+    </item>
+    
+    <item>
+      <title>Quant Portfolio Return Update Nov 2017</title>
+      <link>https://tadakichi.github.io/returns/quant-portfolio-return-update-nov-2017/</link>
+      <pubDate>Mon, 29 Jan 2018 03:32:03 -0800</pubDate>
+      
+      <guid>https://tadakichi.github.io/returns/quant-portfolio-return-update-nov-2017/</guid>
+      <description>The model and backtesting strategy are here;
+model
+backtesting
+The portfolio return from Sep to Nov is here;
+ 000060 메리츠화재 -11.56%
+000320 노루홀딩스 -10.14%
+000370 한화손해보험 -0.04%
+000880 한화 -1.56%
+001940 KISCO홀딩스 -8.82%
+002030 아세아 1.32%
+003690 코리안리 -2.26%
+005710 대원산업 0.66%
+006120 SK케미칼 14.25%
+007690 국도화학 5.92%
+009410 태영건설 25.87%
+011760 현대상사 -8.74%
+013580 계룡건설 0.85%
+015360 예스코 -0.66%
+016590 신대양제지 1.06%
+034730 SK -5.07%
+041650 상신브레이크 -1.86%</description>
+    </item>
+    
+    <item>
       <title>More Rigid Backtesting</title>
       <link>https://tadakichi.github.io/model/more-rigid-backtesting/</link>
       <pubDate>Wed, 27 Dec 2017 21:13:55 -0800</pubDate>
